@@ -1,0 +1,19 @@
+package ecommerce_testing;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
+
+public class Login {
+
+	@Test
+	public void logintoAmazon(){
+		WebDriver driver;
+		 driver = Browser.initiate(driver, chrome, url);
+		
+		driver.get("www.amazon.com");
+		
+		pom loginfun = new pom(driver);
+		
+	
+	}
+}

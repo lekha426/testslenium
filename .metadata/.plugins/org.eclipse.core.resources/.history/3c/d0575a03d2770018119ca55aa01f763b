@@ -1,0 +1,140 @@
+package ecommerce_testing;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class login {
+	
+	By user= By.id("ap_email");
+	By password= By.id("ap_password");
+	By login=By.id("signInSubmit");
+	By continu= By.id("continue");
+	By searchbox= By.id("twotabsearchtextbox");
+
+	
+	ChromeDriver driver = new ChromeDriver();
+	WebDriverWait wait = new WebDriverWait(driver,90);
+	@Test
+	public void invokeBrowser(){
+	
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		driver.get("https://www.amazon.com/ap/signin?_encoding=UTF8&ignoreAuthState=1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_signin&switch_account=");
+		entercredentials();
+	}
+	@Test(priority=0)
+	public void entercredentials()
+	{
+		try {
+			Thread.sleep(5000);
+			driver.findElement(user).sendKeys("hrullekhakodali@gmail.com");
+			driver.findElement(continu).click();
+			driver.findElement(password).sendKeys("hrullekha123!");
+			driver.findElement(login).click();
+			amazonslideshow_image();
+			//amazonsearch();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	}
+	
+/*	@Test
+	public void amazonsearch(){
+		try {
+			Thread.sleep(5000);
+			driver.findElement(searchbox).sendKeys("camera");
+			WebElement searchbox1= driver.findElement(searchbox);
+			searchbox1.sendKeys(Keys.RETURN);
+			//amazonrelaventseachresults();
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
+	
+/*	@Test
+	public void amazonrelaventseachresults(){
+		//List <WebElement> ls= null; 
+		//Boolean value1=false;
+		
+		try
+		{
+			for(int i=0; i<10; i++)
+			{
+				Thread.sleep(5000);
+				WebElement a =driver.findElement(By.xpath("//*[@id='result_"+ i +"']/div/div[2]/div[2]/div[1]/a/h2"));
+				Assert.assertTrue(a.getText().contains("camera"), "Search result validation failed at instance [ + i + ].");
+				   
+			
+			    String str= a.getText();
+			   Assert.assertTrue(str.contains("camera"));
+			   driver.navigate().back();
+              // System.out.println(value1);
+			}
+		} catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
+	@Test(priority=1)
+ public void amazonslideshow_image(){
+	
+		List<WebElement> ls= driver.findElements(By.cssSelector("#anonCarousel1 > ol > li"));
+		for(int i=0; i<ls.size(); i++){
+			System.out.println("hi lekha");
+			String val = ls.get(i).getAttribute("aria-hidden");
+			System.out.println("true" + val);
+		}
+		for(WebElement tag: ls){
+			String value1= tag.getAttribute("aria-hidden");
+			//System.out.println(tag.getAttribute("aria-hidden"));
+				if(value1.equals("false"))
+				{
+					//System.out.println("test is ok");
+					driver.manage().timeouts().pageLoadTimeout(150, TimeUnit.SECONDS);
+					String value2= tag.getAttribute("aria-hidden");
+					List<WebElement> lsagain= driver.findElements(By.cssSelector("#anonCarousel1 > ol > li"));
+					
+					//System.out.println("test is working" + value2);
+					//if(value2.equals("true"))
+						//System.out.println("test is working");
+				}
+		}
+	 }
+	
+	@Test(priority=2)
+	public void amazonhoveronimage(){
+		driver.get("https://www.amazon.com/?ref_=nav_signin&");
+		WebDriverWait wait= new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#anonCarousel1 > ol > li:nth-child(1)")));
+		WebElement elem= driver.findElement(By.cssSelector("#anonCarousel1 > ol > li:nth-child(1)"));
+		Actions builder = new Actions(driver);
+		Action moverhoveronimage=builder.moveToElement(elem).build();
+		moverhoveronimage.perform();
+		//System.out.println("amazonhoveronimage is working");
+		//System.out.println(elem.getAttribute("aria-hidden"));
+		
+	}
+	
+
+}

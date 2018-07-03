@@ -1,0 +1,21 @@
+package ecommerce_testing;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class Browser {
+
+	static WebDriver driver;
+	
+	public static WebDriver initiate (WebDriver browser, String chrome, String url){
+		
+		if(browser.equalsIgnoreCase("chrome")){
+			driver = new ChromeDriver();
+		}
+	
+		
+	}
+}

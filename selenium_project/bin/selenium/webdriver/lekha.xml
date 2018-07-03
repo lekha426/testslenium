@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Test">
+    <classes>
+      <class name="selenium.webdriver.basic.Lekha"/>
+      
+      <class name="selenium.webdriver.basic.Radiobutton"/>
+      
+           <class name="com.wordpress.TestCases.VerifyWordpressLogin"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

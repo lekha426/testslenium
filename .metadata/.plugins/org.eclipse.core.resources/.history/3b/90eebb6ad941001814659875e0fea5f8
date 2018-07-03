@@ -1,0 +1,27 @@
+package selenium.webdriver.basic;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Scrolldownandup {
+
+	
+
+	WebDriver driver;
+	@Test
+	public void scroll(){
+		try {
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			driver.get("http://jqueryui.com/droppable/");
+			Thread.sleep(10000);
+			JavascriptExecutor js=(JavascriptExecutor)driver;
+			js.executeScript("window.scrollBy(0,1000)");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

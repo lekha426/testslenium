@@ -1,0 +1,18 @@
+package ecommerce_testing;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class pom {
+
+	WebDriver driver;
+	 
+	By login =By.id("ap_email");
+	By password = By.id("ap_password");
+	By signin = By.id("signInSubmit");
+	
+	public void pom(WebDriver localdriver ){
+		this.driver=localdriver;
+	}
+	
+}

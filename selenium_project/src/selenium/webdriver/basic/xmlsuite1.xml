@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Test">
+    <classes>
+     <!--  <class name="selenium.webdriver.basic.abcd.NewTest"/>
+        <class name="selenium.webdriver.basic.abcd.NewTest2"/> -->
+        
+        <class name="selenium.webdriver.basic.Day1"/>
+            <class name="selenium.webdriver.basic.Day2"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
